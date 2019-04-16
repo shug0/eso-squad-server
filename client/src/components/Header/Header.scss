@@ -1,0 +1,50 @@
+@import '../../assets/var';
+
+.Header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: $backgroundDark;
+
+
+  &__title {
+    color: $textLight;
+    font-size: 2rem;
+  }
+
+  &__infos {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    color: $textDark;
+    font-size: 1.2rem;
+
+    & > div {
+      margin-left: 1rem;
+    }
+
+    svg {
+      color: $textMedium;
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    &__cp {
+
+    }
+
+
+    &__edit {
+      color: $textMedium;
+      cursor: pointer;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import 'var.scss';
+
+body, html, #root {
+  min-height: 100%;
+}
+
+body {
+  background: $background;
+  color: $textMedium;
+  font-family: 'Open Sans', sans-serif
+}
+
+.Wrapper {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rubik', sans-serif;
+}
