@@ -5,11 +5,13 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "node-sass": "^4.11.0",
+    "polished": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.6.1",
     "react-scripts": "2.1.8",
+    "react-select": "^2.4.2",
     "reset.css": "^2.0.2",
     "socket.io-client": "^2.2.0",
     "standard": "^12.0.1"

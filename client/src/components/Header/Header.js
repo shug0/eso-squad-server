@@ -1,27 +1,38 @@
 import React, { Component } from 'react'
+import { string, number } from 'prop-types'
 import 'client/src/components/Header/Header.scss'
-import { FiSettings } from 'react-icons/fi';
-import { GiEclipseFlare, GiElfHelmet } from 'react-icons/gi';
+import { getRoleIcon, SettingsIcon } from '../Icons'
 
 
 class Header extends Component {
+  static propTypes = {
+    account: string.isRequired,
+    cp: number.isRequired,
+    role: string.isRequired,
+  }
+
   render () {
-    const { account } = this.props;
+    const { account, cp, role } = this.props
+    const RoleIcon = getRoleIcon[role]
 
     return (
       <section className="Header">
         <h1 className="Header__title">ESO SQUAD</h1>
         <div className="Header__infos">
           <div className="Header__infos__account">
-            @{account}
+            <strong>@</strong>{account}
           </div>
 
-          <div className="Header__infos__cp">
-            50 <GiEclipseFlare /> 450
+          <div className="Header__infos__detail">
+            <strong>CP</strong> {cp}
+          </div>
+
+          <div className="Header__infos__detail">
+            <RoleIcon /> {role}
           </div>
 
           <div className="Header__infos__edit">
-            <FiSettings />
+            <SettingsIcon />
           </div>
         </div>
       </section>

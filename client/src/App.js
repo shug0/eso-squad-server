@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './assets/theme.scss'
-import io from 'socket.io-client'
 import Header from './components/Header/Header'
+import SearchBar from './components/SearchBar/SearchBar'
 
+// import io from 'socket.io-client'
 // const socket = io.connect('http://localhost:8080')
 
 class App extends Component {
@@ -11,7 +12,13 @@ class App extends Component {
       <>
         <Header
           account={"Shug0o"}
+          cp={450}
+          role={"DD"}
         />
+        <section className="Wrapper">
+          <SearchBar />
+
+        </section>
       </>
     )
   }
