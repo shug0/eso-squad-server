@@ -203,4 +203,4 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
-# End of https://www.gitignore.io/api/node,macos,webstorm+all
+client/build/**

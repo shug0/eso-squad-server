@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './assets/theme.scss'
 import Header from './components/Header/Header'
-import SearchBar from './components/SearchBar/SearchBar'
+import SearchInput from './components/SearchInput/SearchInput'
 
 // import io from 'socket.io-client'
 // const socket = io.connect('http://localhost:8080')
@@ -9,17 +9,14 @@ import SearchBar from './components/SearchBar/SearchBar'
 class App extends Component {
   render () {
     return (
-      <>
+      <main className='Wrapper'>
         <Header
-          account={"Shug0o"}
+          account={'Shug0o'}
           cp={450}
-          role={"DD"}
+          status={'DD'}
         />
-        <section className="Wrapper">
-          <SearchBar />
-
-        </section>
-      </>
+        <SearchInput />
+      </main>
     )
   }
 }

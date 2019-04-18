@@ -1,41 +1,35 @@
 import React, { Component } from 'react'
+import { SettingsIcon } from '../Icons'
 import { string, number } from 'prop-types'
-import 'client/src/components/Header/Header.scss'
-import { getRoleIcon, SettingsIcon } from '../Icons'
-
+import './Header.scss'
 
 class Header extends Component {
   static propTypes = {
     account: string.isRequired,
     cp: number.isRequired,
-    role: string.isRequired,
+    status: string.isRequired,
   }
 
   render () {
-    const { account, cp, role } = this.props
-    const RoleIcon = getRoleIcon[role]
+    const {
+      account,
+      cp,
+      status
+    } = this.props
 
     return (
-      <section className="Header">
-        <h1 className="Header__title">ESO SQUAD</h1>
-        <div className="Header__infos">
-          <div className="Header__infos__account">
-            <strong>@</strong>{account}
-          </div>
+      <header className='Header'>
+        <h1 className='Header__title'>ESO Squad</h1>
+        <aside className='Header__infos'>
+          <span className='Header__infos__detail'>@{account}</span>
+          <span className='Header__infos__detail'>Role {status}</span>
+          <span className='Header__infos__detail'>CP {cp}</span>
+        </aside>
 
-          <div className="Header__infos__detail">
-            <strong>CP</strong> {cp}
-          </div>
-
-          <div className="Header__infos__detail">
-            <RoleIcon /> {role}
-          </div>
-
-          <div className="Header__infos__edit">
-            <SettingsIcon />
-          </div>
+        <div className='Header__settings'>
+          <SettingsIcon />
         </div>
-      </section>
+      </header>
     )
   }
 }

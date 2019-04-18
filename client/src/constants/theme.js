@@ -5,5 +5,5 @@ export const COLORS = {
   textWhite: '#fff',
   textLight: '#eee',
   textMedium: '#b9bbbe',
-  textDark: '#72767d',
+  textDark: '#72767d'
 }

@@ -1,1 +1,1 @@
-export const ROLES = ["DD", "TANK", "HEAL"]
+export const ROLES = ['DD', 'TANK', 'HEAL']

@@ -4,16 +4,32 @@ body, html, #root {
   min-height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: $background;
   color: $textMedium;
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
+  background: url("./header-300.jpg") no-repeat top center $background;
+}
+
+#root {
+  &:before {
+    content: '';
+    height: 100px;
+    width: 100%;
+    top: 200px;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(to bottom, transparent, $background);
+  }
 }
 
 .Wrapper {
   max-width: 1000px;
-  margin: 2rem auto;
+  margin: auto;
   padding: 2rem;
 }
 
