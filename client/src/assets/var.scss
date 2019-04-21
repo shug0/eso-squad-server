@@ -1,7 +1,10 @@
 // COLORS
-$background: #36393F;
-$backgroundMedium: #2F3135;
-$backgroundDark: #1F2124;
+$primary: #e67e22;
+$primaryDark: darken($primary, 10%);
+
+$background: #36393f;
+$backgroundMedium: #2f3135;
+$backgroundDark: #1f2124;
 
 $textWhite: #fff;
 $textLight: #eee;

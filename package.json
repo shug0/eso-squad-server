@@ -9,13 +9,14 @@
     "server"
   ],
   "scripts": {
-    "fix": "standard --fix",
     "dev": "concurrently \"yarn run client_start\" \"npm run server_dev\""
   },
   "devDependencies": {
     "concurrently": "^4.1.0"
   },
-  "standard": {
-    "parser": "babel-eslint"
+  "husky": {
+    "hooks": {
+      "pre-commit": "standard --fix .src"
+    }
   }
 }

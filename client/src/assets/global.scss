@@ -1,6 +1,8 @@
-@import 'var.scss';
+@import "var";
 
-body, html, #root {
+body,
+html,
+#root {
   min-height: 100%;
 }
 
@@ -10,29 +12,33 @@ body, html, #root {
 
 body {
   color: $textMedium;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
-  background: url("./header-300.jpg") no-repeat top center $background;
+  background: url("medias/header-300.jpg") no-repeat top center $background;
 }
 
 #root {
   &:before {
-    content: '';
+    content: "";
     height: 100px;
     width: 100%;
     top: 200px;
     left: 0;
+    z-index: -1;
     position: absolute;
     background: linear-gradient(to bottom, transparent, $background);
   }
 }
 
-.Wrapper {
-  max-width: 1000px;
-  margin: auto;
-  padding: 2rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rubik", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rubik', sans-serif;
+strong {
+  font-weight: bold;
 }

@@ -10,11 +10,11 @@
     text-transform: uppercase;
   }
 
-  &__infos{
+  &__infos {
     margin-left: auto;
     &__detail {
       &:not(:first-child):before {
-        content: '';
+        content: "";
         height: 0.4rem;
         width: 0.4rem;
         display: inline-block;
@@ -30,5 +30,19 @@
     font-size: 1.2rem;
     margin-left: 1rem;
     cursor: pointer;
+
+    svg {
+      transition: transform ease-out 0.2s;
+    }
+
+    a {
+      color: white;
+    }
+
+    &:hover {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
   }
 }
