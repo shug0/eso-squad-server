@@ -2,35 +2,26 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-const redis = require("redis")
-
-const indexRouter = require('./routes/index')
+const redis = require('redis')
 
 const app = express()
 
+// LOGGER & PARSER
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter)
+// REDIS INIT
+const redisClient = redis.createClient({ port: 32768 })
+redisClient.on('error', function (err) {
+  console.log('Error ' + err)
+})
 
-const client = redis.createClient({ port: 32768 })
+// ROUTES
+const getApiRouter = require('./routes/api')
+app.use('/api', getApiRouter(redisClient))
 
-client.on("error", function (err) {
-  console.log("Error " + err);
-});
-
-client.set("string key", "string val", redis.print);
-client.hset("hash key", "hashtest 1", "some value", redis.print);
-client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-client.hkeys("hash key", function (err, replies) {
-  console.log(replies.length + " replies:");
-  replies.forEach(function (reply, i) {
-    console.log("    " + i + ": " + reply);
-  });
-  client.quit();
-});
-
+// Export APP
 module.exports = app
