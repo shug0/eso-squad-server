@@ -17,6 +17,7 @@
     "redis": "^2.8.0",
     "socket.io": "^2.2.0"
     "redisscan": "^2.0.0",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.11",
