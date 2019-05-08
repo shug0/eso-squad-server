@@ -25,8 +25,8 @@ redisClient.on('error', function (err) {
   console.log('Error ' + err)
 })
 
-// ROUTES
-const getApiRouter = require('./routes/api')
+// API ROUTING
+const getApiRouter = require('./api')
 app.use('/api', getApiRouter(redisClient))
 
 // Export APP
