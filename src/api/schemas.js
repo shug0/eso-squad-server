@@ -1,7 +1,7 @@
 const Yup = require('yup')
-const { PLATFORM, REGIONS, ROLES, ROLE_DD, ROLE_HEAL, ROLE_TANK } = require('../constants/constants')
+const { PLATFORM, REGIONS, ROLES, ROLE_DD, ROLE_HEAL, ROLE_TANK } = require('../constants/game')
 
-const userFormValidationSchema = Yup.object().shape({
+export const userFormValidationSchema = Yup.object().shape({
   pseudo: Yup.string()
     .required('Enter your ESO account name')
     .max(40, '🤔'),
@@ -23,7 +23,7 @@ const userFormValidationSchema = Yup.object().shape({
     .required('Select your region')
 })
 
-const newGroupFormValidationSchema = Yup.object().shape({
+export const newGroupFormValidationSchema = Yup.object().shape({
   host: userFormValidationSchema,
   eventId: Yup.string(),
   players_template: Yup.object().shape({
@@ -33,7 +33,3 @@ const newGroupFormValidationSchema = Yup.object().shape({
   }),
   created: Yup.number().required()
 })
-
-module.exports = {
-  newGroupFormValidationSchema
-}

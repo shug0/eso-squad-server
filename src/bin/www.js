@@ -1,49 +1,28 @@
-#!/usr/bin/env node
+import debug from 'debug'
+import http from 'http'
+import SocketServer from 'socket.io'
 
-/**
- * Module dependencies.
- */
+import app from '../app'
+import socketConfig from '../sockets/config.json'
+import initSocket from '../sockets/base'
 
-const app = require('../app')
-const debug = require('debug')('eso-squad-back:server')
-const http = require('http')
-
-/**
- * Get port from environment and store in Express.
- */
-
+// Get port from environment and store in Express.
 const port = normalizePort(process.env.PORT || '8080')
 app.set('port', port)
 
-/**
- * Create HTTP server.
- */
-
 const server = http.createServer(app)
 
-/**
- * Socket IO Config
- */
-
-const config = require('../sockets/config.json')
-const SocketServer = require('socket.io')
-
-const io = new SocketServer(config)
+// Socket IO Config
+const io = new SocketServer(socketConfig)
 io.listen(server)
-require('../sockets/base')(io)
+initSocket(io)
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+// Listen on provided port, on all network interfaces.
 server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
+// Normalize a port into a number, string, or false.
 function normalizePort (val) {
   const port = parseInt(val, 10)
 
@@ -60,10 +39,7 @@ function normalizePort (val) {
   return false
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 function onError (error) {
   if (error.syscall !== 'listen') {
     throw error
@@ -78,24 +54,19 @@ function onError (error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges')
       process.exit(1)
-      break
     case 'EADDRINUSE':
       console.error(bind + ' is already in use')
       process.exit(1)
-      break
     default:
       throw error
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Event listener for HTTP server "listening" event.
 function onListening () {
   const addr = server.address()
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port
-  debug('Listening on ' + bind)
+  debug('eso-squad-back:server')('Listening on ' + bind)
 }

@@ -1,6 +1,6 @@
-const fs = require('fs')
-const http = require('http')
-const pictures = require('/')
+import fs from 'fs'
+import http from 'http'
+import pictures from '/'
 
 function saveImageToDisk (url, localPath) {
   const file = fs.createWriteStream(localPath)

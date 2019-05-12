@@ -1,9 +1,9 @@
-const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const redis = require('redis')
-const cors = require('cors')
+import express from 'express'
+import path from 'path'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import cors from 'cors'
+import apiRouter from './api/router'
 
 const app = express()
 
@@ -15,19 +15,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// REDIS INIT
-const redisClient = redis.createClient({ port: 32768 })
-redisClient.on('connect', function () {
-  console.log('Redis connected')
-})
-
-redisClient.on('error', function (err) {
-  console.log('Error ' + err)
-})
-
 // API ROUTING
-const getApiRouter = require('./api')
-app.use('/api', getApiRouter(redisClient))
+app.use('/api', apiRouter)
 
 // Export APP
-module.exports = app
+export default app

@@ -1,18 +1,21 @@
-const { newGroupFormValidationSchema } = require('../schemas')
-const { newResponse, newError } = require('../../helpers/expressHelper')
+import { newGroupFormValidationSchema } from '../schemas'
+import { newResResponse, newResError } from '../../helpers/expressHelper'
+import { getGroupKey } from '../../helpers/keyGenerator'
 
-module.exports = (client) => (req, res) => {
+export default (redis) => (req, res) => {
   try {
+    // Payload values integrity checking
     newGroupFormValidationSchema.validateSync(req.body)
-
-    client.set(
-      `${req.body.eventId}:${req.body.host.id}`,
+    // Generate key for group with eventId & hostId
+    const key = getGroupKey(req.body.eventId, req.body.host.id)
+    // Create the group in redis
+    redis.set(
+      key,
       JSON.stringify(req.body)
     )
-
-    const msg = `Event created successfully in ${req.body.eventId}/${req.body.host.id}`
-    return newResponse(res, { msg })
+    // Return success message
+    return newResResponse(res, { msg: `Event created successfully in ${key}` })
   } catch (err) {
-    return newError(res, err)
+    return newResError(res, err)
   }
 }

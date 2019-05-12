@@ -1,14 +1,6 @@
-module.exports = function (io) {
-  const nsp = io.of('/test')
-  nsp.on('connection', function (socket) {
-    console.log('someone connected', socket.id)
+import SocketWithRedisClient from '../models/SocketWithRedisClient'
 
-    socket.on('connect_timeout', () => {
-      console.log('Waiting connection...', socket.id)
-    })
-
-    socket.on('disconnect', (reason) => {
-      console.log('Connection lost...', reason, socket.id)
-    })
-  })
+export default function (io) {
+  // eslint-disable-next-line no-new
+  new SocketWithRedisClient({ port: 32768 }, io)
 }

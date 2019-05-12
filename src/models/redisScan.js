@@ -1,11 +1,11 @@
-const redisScan = require('redisscan')
+import redisScan from 'redisscan'
 
 // Promise : Scan the redis DB and return the pattern matched items
-const getRedisItems = (redis, pattern, limit = 30) => new Promise((resolve, reject) => {
+export const getRedisItems = (client, pattern, limit) => new Promise((resolve, reject) => {
   let result = {}
 
   redisScan({
-    redis,
+    redis: client,
     pattern,
     keys_only: false,
     each_callback: function (type, key, subkey, length, value, cb) {
@@ -19,7 +19,3 @@ const getRedisItems = (redis, pattern, limit = 30) => new Promise((resolve, reje
     }
   })
 })
-
-module.exports = {
-  getRedisItems
-}

@@ -1,8 +1,9 @@
-const { newResponse, newError } = require('../../helpers/expressHelper')
-const { getRedisItems } = require('../../helpers/redisHelper')
+import { newResResponse, newResError } from '../../helpers/expressHelper'
+import { getGroupsPattern } from '../../helpers/keyGenerator'
 
-module.exports = (client) => (req, res) => (
-  getRedisItems(client, '*', 4)
-    .then(result => newResponse(res, result))
-    .catch(err => newError(res, err))
+export default (redis) => (req, res) => (
+  // Get all the groups limited to 4 items
+  redis.getItems(getGroupsPattern(), 4)
+    .then(result => newResResponse(res, result))
+    .catch(err => newResError(res, err))
 )
