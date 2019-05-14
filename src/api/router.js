@@ -4,11 +4,12 @@ import { logDone } from '../helpers/logger'
 import getGroups from './groups/getGroups'
 import getGroupsEvent from './groups/getGroupsEvent'
 import postGroup from './groups/postGroup'
+import { REDIS_CONFIG } from '../constants/redis'
 
 const router = express.Router()
 
 // REDIS INIT
-const redis = new RedisClient({ port: 32768 })
+const redis = new RedisClient(REDIS_CONFIG)
 
 // ROUTES
 router.get('/groups', getGroups(redis))
