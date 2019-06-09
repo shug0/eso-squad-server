@@ -1,5 +1,5 @@
 import RedisClient from './RedisClient'
-import { EVENT_USER_JOIN, PLAYER_NAMESPACE, EVENT_GROUP_UPDATE } from '../constants/sockets'
+import { EVENT_USER_JOIN, PLAYER_NAMESPACE, EVENT_PLAYERS_UPDATE } from '../constants/sockets'
 import { getGroupPlayersKey } from '../helpers/keyGenerator'
 import { logError, logDone } from '../helpers/logger'
 
@@ -37,7 +37,7 @@ class SocketWithRedisClient extends RedisClient {
   broadcastGroupUpdate = async (groupId, playersGroupKey) => {
     // Get snapshot of current group && broadcast it to user
     const groupSnap = await this.hgetall(playersGroupKey)
-    this.playersChannel.to(groupId).emit(EVENT_GROUP_UPDATE, groupSnap)
+    this.playersChannel.to(groupId).emit(EVENT_PLAYERS_UPDATE, groupSnap)
   }
 
   addPlayer = async (user, groupId, playersGroupKey) => {
