@@ -1,7 +1,16 @@
 import { GROUPS_PREFIX, PLAYERS_PREFIX } from '../constants/redis'
 
-export const getGroupKey = (eventId, hostId) => `${GROUPS_PREFIX}:${eventId}:${hostId}`
-export const getGroupPlayersKey = (groupId) => `${PLAYERS_PREFIX}:${groupId}`
+const getKeyPrefix = (host) =>
+  `${GROUPS_PREFIX}:${host.region}:${host.platform}`
 
-export const getGroupsPattern = () => `${GROUPS_PREFIX}:*`
-export const getGroupsEventPattern = (eventKey) => `${GROUPS_PREFIX}:${eventKey}:*`
+export const getGroupKey = (host, eventId) =>
+  `${getKeyPrefix(host)}:${eventId}:${host.id}`
+
+export const getGroupsPattern = host =>
+  `${getKeyPrefix(host)}:*`
+
+export const getGroupsEventPattern = (host, eventKey) =>
+  `${getKeyPrefix(host)}:${eventKey}:*`
+
+export const getGroupPlayersKey = (groupId) =>
+  `${PLAYERS_PREFIX}:${groupId}`

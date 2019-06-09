@@ -1,7 +1,7 @@
 // GAME CONSTANTS
-export const ROLE_DD = 'DD'
-export const ROLE_TANK = 'TANK'
-export const ROLE_HEAL = 'HEAL'
+export const ROLE_DD = 'dd'
+export const ROLE_TANK = 'tank'
+export const ROLE_HEAL = 'heal'
 export const ROLES = [ROLE_DD, ROLE_TANK, ROLE_HEAL]
-export const PLATFORM = ['PC', 'XBOX', 'PS4']
-export const REGIONS = ['EU', 'NA']
+export const PLATFORM = ['pc', 'xbox', 'ps4']
+export const REGIONS = ['eu', 'na']
