@@ -2,6 +2,7 @@ import express from 'express'
 import RedisClient from '../models/RedisClient'
 import { logDone } from '../helpers/logger'
 import getGroups from './groups/getGroups'
+import getGroup from './groups/getGroup'
 import getGroupsEvent from './groups/getGroupsEvent'
 import postGroup from './groups/postGroup'
 import { REDIS_CONFIG } from '../constants/redis'
@@ -20,6 +21,7 @@ router.use((req, res, next) => {
 const redis = new RedisClient(REDIS_CONFIG)
 
 // ROUTES
+router.get('/group/:groupId', getGroup(redis))
 router.get('/groups', getGroups(redis))
 router.get('/groups/:events', getGroupsEvent(redis))
 router.post('/groups', postGroup(redis))
