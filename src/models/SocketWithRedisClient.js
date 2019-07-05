@@ -21,31 +21,31 @@ class SocketWithRedisClient extends RedisClient {
         socket.join(groupId)
 
         // Add the player to the redis group
-        _this.addPlayer(user, groupId, playersGroupKey).catch(logError)
-        _this.broadcastGroupUpdate(groupId, playersGroupKey)
+        _this.addPlayer(user, playersGroupKey).catch(logError)
+        _this.broadcastPlayersUpdate(groupId, playersGroupKey)
 
         // When player disconnect remove it from the group
         socket.on('disconnect', () => {
-          _this.removePlayer(user, groupId, playersGroupKey).catch(logError)
-          _this.broadcastGroupUpdate(groupId, playersGroupKey)
+          _this.removePlayer(user, playersGroupKey).catch(logError)
+          _this.broadcastPlayersUpdate(groupId, playersGroupKey)
         })
       })
     })
     logDone('Socker.io watchers loaded')
   }
 
-  broadcastGroupUpdate = async (groupId, playersGroupKey) => {
+  broadcastPlayersUpdate = async (groupId, playersGroupKey) => {
     // Get snapshot of current group && broadcast it to user
-    const groupSnap = await this.hgetall(playersGroupKey)
-    this.playersChannel.to(groupId).emit(EVENT_PLAYERS_UPDATE, groupSnap)
+    const playersSnap = await this.hgetall(playersGroupKey)
+    this.playersChannel.to(groupId).emit(EVENT_PLAYERS_UPDATE, playersSnap)
   }
 
-  addPlayer = async (user, groupId, playersGroupKey) => {
-    await this.hset(playersGroupKey, user.id, JSON.stringify(user))
+  addPlayer = async (user, key) => {
+    await this.hset(key, user.id, JSON.stringify(user))
   }
 
-  removePlayer = async (user, groupId, playersGroupKey) => {
-    await this.hdel(playersGroupKey, user.id)
+  removePlayer = async (user, key) => {
+    await this.hdel(key, user.id)
   }
 }
 
