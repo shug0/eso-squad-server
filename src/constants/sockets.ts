@@ -1,0 +1,6 @@
+// EVENTS
+export const EVENT_USER_JOIN = "USER_JOIN";
+export const EVENT_PLAYERS_UPDATE = "EVENT_PLAYERS_UPDATE";
+
+// NAMESPACES
+export const PLAYER_NAMESPACE = "players";

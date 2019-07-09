@@ -1,0 +1,5 @@
+{
+    "cookie": "USER_ID",
+    "pingInterval": 2000,
+    "pingTimeout": 5000
+}
