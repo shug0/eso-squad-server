@@ -12,7 +12,10 @@ class RedisClientModel {
 
   constructor(params: ClientOpts) {
     this.client = redis.createClient(params);
-    this.client.on("connect", () => logDone("Redis connected"));
+    this.client.on("connect", () => {
+      logDone("Redis connected");
+      //this.client.flushall(() => logDone("Redis flushed"));
+    });
     this.client.on("error", err => logError(`Redis Error : ${err}`));
 
     this.set = promisify(this.client.set).bind(this.client);

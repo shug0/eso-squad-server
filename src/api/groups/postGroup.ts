@@ -14,7 +14,7 @@ export default (redis: RedisClientModel) => (req: Request, res: Response) => {
     redis.set(
       key,
       JSON.stringify(req.body)
-    )
+    );
     // Return success message
     return newResResponse(res, {
       msg: `Event created successfully in ${key}`,

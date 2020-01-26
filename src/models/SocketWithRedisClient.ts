@@ -44,6 +44,7 @@ class SocketWithRedisClient extends RedisClient {
     logDone("Socker.io watchers loaded");
   }
 
+
   broadcastPlayersUpdate = async (groupId: string, playersGroupKey: string) => {
     // Get snapshot of current group && broadcast it to user
     const playersSnap = await this.hgetall(playersGroupKey);

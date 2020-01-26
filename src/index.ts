@@ -20,7 +20,7 @@ initSocket(io);
 // Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on("error", onError);
-server.on("listening", () => debug("ekinow-node:server")("Listening on 3000"));
+server.on("listening", () => debug("eso-squad-node:server")("Listening on 3000"));
 
 // Normalize a port into a number, string, or false.
 function normalizePort(val: string) {

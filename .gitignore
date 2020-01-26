@@ -204,3 +204,5 @@ modules.xml
 .idea/sonarlint
 
 client/build/**
+
+build
