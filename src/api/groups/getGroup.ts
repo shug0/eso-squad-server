@@ -5,7 +5,11 @@ import RedisClientModel from "../../models/RedisClient";
 export default (redis: RedisClientModel) => (req: Request, res: Response) => {
   const groupId = req.params.groupId;
 
+  console.log({groupId})
+
   // Get all the groups limited to 4 items
+
+
   return redis
     .getItems(groupId, 4)
     .then(result => newResResponse(res, result))
